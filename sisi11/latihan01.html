@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATIHAN 1 JSON </title>
+</head>
+<body>
+    
+     Nama:<span id="txNAMA"></span><br>
+    TGL_LAHIR : <span id="txTALAG"></span><br>
+    JENIS KELAMIN: <span id ="txJKL"></span><br>
+    ASAL : <span id="txASAL"></span><br>
+    HOBI : <span id ="txHOBI"></span><br> 
+
+
+    <script>
+        const bacdta = new XMLHttpRequest();
+        bacdta. open ("GET","http://localhost/sisi11/latihan01.php");
+        bacdta. send (); 
+
+        bacdta. onload =function (){
+            const dta = JSON.parse(this.responseText);
+
+            console.log(dta);
+            let jkl = "LAKI LAKI";
+            if(dta.jkl=="P"){
+                jkl="perempuan";
+            }
+            document.getElementById("txNAMA").innerHTML=dta.NAMA
+            document.getElementById("txTALAG").innerHTML=dta.TGL_LAHIR
+            document.getElementById("txJKL").innerHTML=jkl
+            document.getElementById("txASAL").innerHTML=dta.ASAL
+            document.getElementById("txHOBI").innerHTML=dta.HOBI
+            
+        }
+    </script>
+</body>
+</html>

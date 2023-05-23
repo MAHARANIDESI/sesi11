@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATIHAN2 JSON</title>
+</head>
+<body>
+
+    <div id ="tampilkan"></div>
+
+        </tr>
+    </table>
+    <script>
+        const bacadta= new XMLHttpRequest();
+        bacadta.open("GET","http://localhost/sisi11/latihan02.php")
+        bacadta.send();
+
+        bacadta.onload = function(){
+            const dta = JSON.parse(this.responseText);
+            console.log(dta);
+            let tx= '<table><tr><td>#</td> <td>NAMA LENGKAP</td> <td>TANGGAL LAHIR</td> <td>JENIS KELAMIN </td> <td>ASAL</td> <td>HOBI</td></tr>';
+            let no= 0;
+            for(let i =0;i<dta.length;i++){
+                let JKL = (dta[i].JKL=="L")?"laki-laki":"perempuan";
+                no++;
+                tx +='<tr>';       
+                 tx +='<td>'+no+'</td>';
+                 tx +='<td>'+dta[i].NAMA+'</td>';
+                 tx +='<td>'+dta[i].TGL_LAHIR+'</td>';
+                 tx +='<td>'+JKL+'</td>';
+                 tx +='<td>'+dta[i].ASAL+'</td>';
+                 tx +='<td>'+dta[i].HOBI+'</td>';
+            tx +='</tr>';
+            }
+             tx +='</table>';
+             document.getElementById("tampilkan").innerHTML=tx;
+        }
+    </script>
+</body>
+</html>
